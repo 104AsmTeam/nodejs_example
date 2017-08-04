@@ -1,0 +1,250 @@
+
+<html>
+	<head>
+		{{>html-head}}
+		<script>
+		</script>
+	</head>
+
+	<body>
+		<style>
+			.PRO-header{
+				position: fixed;
+				top: 0;
+				left: 0;
+				right: 0;
+				height: 59px;
+				border-bottom: 1px solid #DDD;
+				font-family: 'Microsoft JhengHei';
+				line-height: 45px;
+				color: #333;
+				background-color: #FFF;
+				z-index: 100;
+				box-shadow: 0 0 2px 0 rgba(0, 0, 0, .1);
+			}
+			@media (max-width: 767px) {
+				.PRO-header > .PRO-wrapper{
+					width: 100%;
+				}
+				.PRO-header .PRO-logo{
+					margin: 7px auto;
+					position: absolute;
+					left: calc(50% - 87px);
+				}
+				.PRO-header .-navBtn{
+					position: absolute;
+					left: 12px;
+					top: 13px;
+				}
+				.PRO-header .-navContent{
+					display: none;
+					border: 1px solid #CCC;
+					background-color: #FFF;
+					padding: 50px 15px 20px 15px;
+					box-shadow: 0 1px 5px 2px rgba(0, 0, 0, .2);
+				}
+				.PRO-header .-navContent .PRO-links{
+					border-top: 1px solid #DDD;
+					border-bottom: 1px solid #DDD;
+					margin: 10px 0;
+					padding: 5px 5px 10px 5px;
+					line-height: 2.5;
+				}
+				.PRO-header .-navContent #service{
+					display: none;
+				}
+				.PRO-header .-navContent .PRO-links .-links{
+					font-size: .9em;
+					border-bottom: 1px dotted #DDD;
+					padding-bottom: 10px;
+					margin-bottom: 10px;
+				}
+				.PRO-header .-navContent .PRO-links .-links > a{
+					display: inline-block;
+					width: calc(50% - 3px);
+					line-height: 2;
+					padding: 0 5px;
+				}
+				.PRO-header .-navContent .PRO-links .-links > a:before{
+					content: '\f0da';
+					font: normal normal normal 14px/1 FontAwesome;
+					font-size: inherit;
+					line-height: inherit;
+					text-rendering: auto;
+					-webkit-font-smoothing: antialiased;
+					-moz-osx-font-smoothing: grayscale;
+					margin-right: 5px;
+					display: inline-block;
+					vertical-align: bottom;
+				}
+				.PRO-header .-navContent .PRO-links > a{
+					display: inline-block;
+					width: calc(50% - 3px);
+				}
+				.PRO-header .-navContent .PRO-ctrl{
+					text-align: center;
+				}
+			}
+			@media (min-width: 767px) {
+				.PRO-header > .PRO-wrapper{
+					width: 980px;
+					margin: 0px auto 0px auto;
+				}
+				.PRO-header .PRO-logo{
+					float: left;
+					margin: 7px 10px 7px 0;
+				}
+				.PRO-header .PRO-links{
+					font-size: 14px;
+					display: inline-block;
+					line-height: 59px;
+					padding: 0 20px;
+				}
+				.PRO-header .PRO-links > a{
+					margin-right: 10px;
+				}
+				.PRO-header .PRO-links > #serviceAll{
+					display: none;
+				}
+				.PRO-header .PRO-ctrl{
+					float: right;
+					margin: 9px 0;
+					line-height: 40px;
+				}
+				.PRO-header .PRO-ctrl a{
+					text-decoration: none;
+					color: #999;
+					margin-right: 10px;
+				}
+				.PRO-header .PRO-ctrl a:hover{
+					color: #333;
+					text-decoration: underline;
+				}
+				.PRO-header .-navBtn{
+					display: none;
+				}
+			}
+
+			.PRO-header .PRO-logo:before{
+				content: ' ';
+				background: no-repeat center center url('data:image/png;base64,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');
+				width: 55px;
+				height: 45px;
+				float: left;
+				margin-right: 10px;
+			}
+			.PRO-header .PRO-logo:after{
+				content: '企業大師';
+				float: left;
+				font-size: 24px;
+				font-weight: bold;
+				letter-spacing: 3px;
+				color: #000;
+			}
+			.PRO-header .PRO-cname{
+				font-size: 20px;
+				display: inline-block;
+				line-height: 59px;
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				max-width: 520px;
+			}
+			.PRO-header .PRO-cname:before{
+				content: '';
+				border-left: 1px solid #DDD;
+				margin-right: 10px;
+			}
+
+			.PRO-header .PRO-ico, .PRO-ico{
+				display: inline-block;
+				width: 30px;
+				text-align: center;
+				cursor: pointer;
+				color: #999;
+				font-size: 18px;
+			}
+			.PRO-header .PRO-ico:hover, .PRO-ico:hover{
+				color: #333;
+			}
+			.PRO-header .PRO-ico:before, .PRO-ico:before{
+				font: normal normal normal 14px/1 FontAwesome;
+				font-size: inherit;
+				text-rendering: auto;
+				-webkit-font-smoothing: antialiased;
+				-moz-osx-font-smoothing: grayscale;
+				line-height: inherit;
+			}
+			.PRO-header .ico-appcenter:before {
+				content: '\f00a';
+			}
+			.PRO-header .ico-msg:before {
+				content: '\f075';
+			}
+			.PRO-header .ico-notify:before {
+				content: '\f0f3';
+			}
+
+			.PRO-header .PRO-profile {
+				border-radius: 3px;
+				width: 42px;
+				height: 42px;
+				float: right;
+				margin: 0 15px;
+				border: 1px solid #CCC;
+				background: center center no-repeat url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAf9JREFUeNrsmNtLAkEUxh230sy00nSR6AYmUhBd/n/oqZdegnooutNDEQbRxZRy+g4cIRZ23LktEh34XlbW89vZc2a+s0JKmRnnyGbGPP4B/zzghOpHIUSS/5iBKtAs3QL1oC6LOrAA5aErNOTAKWCCqEMr0ByU42sE0WdJvh5A99BnWoBFaAtajCmbPGsY0rScTABr0A40pXEPAZagD99NQnW2rwk3zLOLmm74BmxyPZlEwJB1X4BUU6FlU1GXtwGZ9QE4b7F60TKp+gAsONx/Qx+AwiFgftyPOuED0KVxlD4AA4eAgWtAOnGWFKsx0LhOsYCtpuwacFoBKBSvUcbkLbgEJAv1qFnw4peiQWdyx6VZoFU45lfWiCQVmuDP9F/whv1E7a6a6mIM6za0bNgcr9CB1BglTfbBG4st505qzrkmgC/Qk8F97wSY1tB0yjNH0hhw3X2lBfgGHXJNjQpqhiPAdUwSmTRJ9ERoQesxXfsAnSBH13AhrMxCwB5RVfTfUBkPmjN2FQYrGPCouabhEek130LXyNfzCUhGc9PCvBLoBXJe+gCkYWfPkas5Q95zlzUYOoSjaOHhm64As/wVwaUfpNgAZNEF4KrCatkE5W7bAk7ysO4rQqxixQawavCZw+kIOgqwlsKEV7IBLKUAmLNx1H22+z5D6ax/BBgAVIx8LXbz0FIAAAAASUVORK5CYII=');
+				background-color: #F0F0F0 !important;
+			}
+			.PRO-header .PRO-profile:hover{
+				border: 1px solid #999;
+			}
+			.PRO-header .PRO-profile:before{
+				content: '\f0d7';
+				float: right;
+				margin-right: -15px;
+			}
+			.PRO-header .PRO-profile img{
+				border-radius: 3px;
+				width: 100%;
+				height: 100%;
+				object-fit: contain;
+			}
+		</style>
+		<div class="PRO-header">
+			<div class="PRO-wrapper">
+				<div class="PRO-logo"></div>
+				<div id="navBtn" class="-navBtn ico ico-nav btn btn-white"></div>
+				<div id="navContent" class="-navContent">
+					<div class="PRO-links">
+						<a id="service" href="javascript:void(0)">服務總覽</a>
+						<div id="serviceAll">
+							服務總覽
+							<div class="-links">
+								<a href="https://marketing.pro.104.com.tw/community.html">行動辦公室</a>
+								<a href="https://marketing.pro.104.com.tw/virtualHR.html">虛擬人資團隊</a>
+								<a href="https://marketing.pro.104.com.tw/payroll.html">人資管理</a>
+								<a href="https://marketing.pro.104.com.tw/secretary.html">私人秘書</a>
+								<a href="https://marketing.pro.104.com.tw/salary.html">薪酬調查</a>
+								<a href="https://marketing.pro.104.com.tw/virtualHR.html#5">招募管理</a>
+								<a href="https://marketing.pro.104.com.tw/virtualHR.html#6">測評中心</a>
+							</div>
+						</div>
+						<a href="https://marketing.pro.104.com.tw/customer.html">客戶見證</a>
+						<a href="https://marketing.pro.104.com.tw/freeplan.html">免費方案</a>
+						<a href="https://marketing.pro.104.com.tw/security.html">安全保證</a>
+						<a href="http://104pro.blogspot.tw">大師學堂</a>
+						<a href="https://marketing.pro.104.com.tw/newLabor.html" class="color-red">ㄧ例一休專區</a>
+						<a href="https://marketing.pro.104.com.tw/feedback.html">與我聯絡</a>
+					</div>
+					<div class="PRO-ctrl">
+						<button type="button" class="btn btn-default" onclick="document.location.href='/user/signup'">註冊</button>
+						<button type="button" class="btn btn-primary" onclick="document.location.href='/user/signin'">登入</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="testing3" />
+	</body>
+</html>
+<script src="/js/testing3.js"></script>
