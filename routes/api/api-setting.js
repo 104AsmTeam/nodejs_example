@@ -26,7 +26,7 @@ module.exports = (app) => {
 			let cid = req.params.id;
 			let data = cid?{id:cid}:null;
 			let result = await settingService.getCompany(data);
-			console.log(req);
+
 			return res.json(jm.success(result));
 		}
 		catch(err){
